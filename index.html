@@ -2181,11 +2181,17 @@
       document.body.classList.remove("container");
     };
 
-  window.addEventListener("load", function() {
+window.addEventListener("load", function() {
   const audio = document.getElementById("miAudio");
-  audio.play();
-  });
-  
+
+  if (audio) {
+    audio.play().catch(e => {
+      console.log("Autoplay bloqueado:", e);
+    });
+  } else {
+    console.log("No se encontró el audio");
+  }
+});
    
 
     setInterval(updateLyrics, 1000);
